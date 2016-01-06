@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <title><%= title %></title>
+
+  <!-- CSS  -->
+  <link href="http://cdn.bootcss.com/material-design-icons/2.0.0/iconfont/style.min.css" rel="stylesheet">
+  <link href="/bower_components/Materialize/dist/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  <% include public/nav %>
+  <div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s3"><a class="active" href="#test1">今日</a></li>
+        <li class="tab col s3"><a id ="3day" class="active" href="#test3">3日</a></li>
+        <li class="tab col s3"><a id ="7day" href="#test7">7日</a></li>
+        <li class="tab col s3"><a id ="14day" href="#test14">14日</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container">
+  <!-- 日行情数据 -->
+   <table class="striped">
+    <thead>
+      <tr>
+          <th data-field="id" class="center">排名</th>
+          <th data-field="name" class="center">股票名称</th>
+          <th data-field="price" class="center">利好指数</th>
+      </tr>
+    </thead>
+    <tbody id = "test1">
+      <% feelings.forEach(function(f,i){ %>
+      <tr>
+        <td class="center"><%=i+1%></td>
+        <td class="center"><a href = "/stocks/<%=f.StockId%>"><%= f.stockName %></a></td>
+        <td class = "center"><%= f.feelingIndex %></td>
+      </tr>
+      <% });%>
+    </tbody>
+    <tbody id = "test3"></tbody>
+    <tbody id = "test7"></tbody>
+    <tbody id = "test14"></tbody>
+  </table>
+  </div>
+  <!--  Scripts-->
+  <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="/bower_components/Chart.js/Chart.min.js"></script>
+  <script src="/bower_components/Materialize/dist/js/materialize.min.js"></script>
+  <script src="/js/init.js"></script>
+  <script src="/js/feeling.js"></script>
+  </body>
+</html>

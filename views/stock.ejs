@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <title><%= title %></title>
+
+  <!-- CSS  -->
+  <link href="http://cdn.bootcss.com/material-design-icons/2.0.0/iconfont/style.min.css" rel="stylesheet">
+  <link href="/bower_components/Materialize/dist/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="/bower_components/c3/c3.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <% include public/nav %>
+  <!-- 正文内容 -->
+  <div class ="">
+    <br>
+    <div class ="container">
+        <div id="chart"></div>
+    </div>
+    <br>
+  </div>
+  <div class ="container">
+  	<!-- <img height="50%" width="100%" src="http://image.sinajs.cn/newchart/daily/n/sh<%=stock.ticker%>.gif"/> -->
+    <br>
+    <object style="visibility: visible;" id="flash" data="http://finance.sina.com.cn/flash/cn.swf?" type="application/x-shockwave-flash" class="stock">
+    <param value="true" name="allowFullScreen"><param value="always" name="allowScriptAccess"><param value="transparent" name="wmode">
+    <%if(stock.ticker.substr(0,3)==='600'||stock.ticker.substr(0,3)==='601') {%>
+     <param value="symbol=<%= 'sh'+stock.ticker%>&amp;code=iddg64geja6fea4eafh9jbj7c5j4ie5d&amp;s=3" name="flashvars">
+    <% }else{ %>
+      <param value="symbol=<%= 'sz'+stock.ticker%>&amp;code=iddg64geja6fea4eafh9jbj7c5j4ie5d&amp;s=3" name="flashvars">
+    <% }%>
+    </object>
+  </div>
+
+  <!--  Scripts-->
+  <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="/bower_components/d3/d3.min.js"></script>
+  <script src="/bower_components/c3/c3.min.js"></script>
+  <script src="/bower_components/Materialize/dist/js/materialize.min.js"></script>
+  <script src="/bower_components/array/dist/array.min.js"></script>
+  <script src="/js/stock1.js"></script>
+  <script src="/js/init.js"></script>
+
+  </body>
+</html>
