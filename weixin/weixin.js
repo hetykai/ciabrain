@@ -22,7 +22,7 @@ module.exports = function(app){
       // 回复屌丝(普通回复)
       var url = 'http://www.tuling123.com/openapi/api?key='+weixinCon["robotKey"]+'&info='+message.Content
       request(url).then(function(response){
-        console.log(response);
+        console.log(response.text);
         res.reply(response.text);
       });
     }
