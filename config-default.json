@@ -5,14 +5,12 @@
     "appID":"wx947add0ef3aea4d9",
     "appsecret":"7dbb76e70d9266e893fc5fcf99626385",
     "redirectUrl":"http://123.57.138.73/oauth",
-    "state":"123"
+    "state":"123",
+    "robotKey":"e1f73a849745e13681f2cc8f4616633d"
   },
   "development": {
     "host":"localhost",
     "port":"4444",
-    "predict":"1 1 9 * * *",
-    "updateHS300":"1 * * * * *",
-    "updateRank":"0 52 10 * * *",
     "updateFeeling":"0 6 * * * *",
     "updateTopic":"0 6 * * * *",
     "updateTrade":"0 39 9 * * *"
@@ -21,9 +19,6 @@
   "production": {
     "host":"123.57.138.73",
     "port":"4444",
-    "predict":"1 1 9 * * *",
-    "updateHS300":"1 * * * * *",
-    "updateRank":"0 51 10 * * *",
     "updateFeeling":"0 1 * * * *",
     "updateTopic":"0 6 * * * *",
     "updateTrade":"0 33 9 * * *"

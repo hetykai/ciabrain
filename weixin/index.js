@@ -62,30 +62,13 @@ exports.createMenu = function(callback){
 			body: {
 			     "button":[
 			    {
-					"name":"猜涨跌",
-					"sub_button":[
-					{
-					   "type":"view",
-					   "name":"模型预测",
-					   "url":"http://123.57.138.73"
-					},{
-						"type":"view",
-					   "name":"个人预测",
-					   "url":"http://123.57.138.73/me"
-					}]
-				},
-			    {
 			    	"type":"view",
-					"name":"琅琊榜",
-					"url":"http://123.57.138.73/ranklist"},
+					"name":"看利好",
+					"url":"http://123.57.138.73/feelings"},
 				{
-					"name":"好股票",
-					"sub_button":[
-					{
-					   "type":"view",
-					   "name":"看利好",
-					   "url":"http://123.57.138.73/feelings"
-					}]
+					"type":"view",
+					"name":"热概念",
+					"url":"http://123.57.138.73/topics"
 				}]
 			},
 			json: true
