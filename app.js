@@ -36,9 +36,6 @@ app.use(session({
 // 设置根目录和API目录
 // =============================================================================
 var routes = require('./routes/index');
-var guess = require('./routes/api/guess');
-var result = require('./routes/api/result');
-var user = require('./routes/api/user');
 var weixinAPI = require('./weixin/weixin');
 var feeling = require('./routes/stock/feeling');
 var stock = require('./routes/stock/stock');
@@ -46,9 +43,6 @@ var trade = require('./routes/stock/trade');
 var topic = require('./routes/stock/topic');
 
 app.use('/', routes);
-app.use('/api',guess);
-app.use('/api',result);
-app.use('/api',user);
 app.use('/api',feeling);
 app.use('/api',stock);
 app.use('/api',trade);

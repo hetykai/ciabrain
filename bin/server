@@ -26,11 +26,6 @@ var server = http.createServer(app);
 /**
  * 初始化表结构和端口
  */
-//猜涨跌接口
-var User = models.User;
-var Guess = models.Guess;
-Guess.belongsTo(User);
-User.hasMany(Guess);
 //舆情表结构
 var Stock = models.Stock;
 var Feeling = models.Feeling;

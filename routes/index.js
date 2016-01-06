@@ -1,7 +1,4 @@
 var express = require('express');
-var User = require('../db/models').User;
-var Result = require('../db/models').Result;
-var Guess = require('../db/models').Guess;
 var Feeling = require('../db/models').Feeling;
 var Stock = require('../db/models').Stock;
 var weixin = require('../weixin');
@@ -10,108 +7,6 @@ var moment = require('moment');
 var time = require('../help/time');
 
 
-
-//竞猜页面
-///////////////////////////////////////////////////
-router.get('/', function(req, res) {
-  if (!req.session.user) {
-    //获取url
-    var url = weixin.getOathUrl();
-    res.redirect(url);
-  }else{
-    var time = today();
-    var tradeAble = tradeTime(time);
-    Result.findOrCreate({where:{time:time},defaults:{time:time}})
-    .spread(function(result){
-      preValue = toStr(result.preValue);
-      trueValue = toStr(result.trueValue);
-      res.render('index', {
-        title: '猜涨跌',
-        time :time,
-        tradeAble:tradeAble,
-        preValue:preValue,
-        trueValue:trueValue,
-        user:req.session.user
-      });
-    });
-  }
-});
-
-//用户个人主页，他人访问
-///////////////////////////////////////////////////
-router.get('/guesses/:userId',function(req,res){
-  if (!req.session.user) {
-    //获取url
-    var url = weixin.getOathUrl();
-    res.redirect(url);
-  }else{
-    var time = today();
-    var tradeAble = tradeTime(time);
-    var id = req.params.userId;
-    Guess.findOrCreate({where:{time:time,UserId:id},defaults:{time:time,UserId:id}})
-    .spread(function(guess){
-      preValue = toStr(guess.preValue);
-      trueValue = toStr(guess.trueValue);
-      res.render('self', {
-        title: '个人主页',
-        time :time,
-        tradeAble:tradeAble,
-        preValue:preValue,
-        trueValue:trueValue,
-        user:req.session.user
-      });
-    });
-  }
-});
-
-//用户个人主页，自己访问
-///////////////////////////////////////////////////
-router.get('/me',function(req,res){
-  if (!req.session.user) {
-    //获取url
-    var url = weixin.getOathUrl();
-    res.redirect(url);
-  }else{
-    var time = today();
-    var tradeAble = tradeTime(time);
-    var user = req.session.user;
-    var id = user.id;
-    Guess.findOrCreate({where:{time:time,UserId:id},defaults:{time:time,UserId:id}})
-    .spread(function(guess){
-      preValue = toStr(guess.preValue);
-      trueValue = toStr(guess.trueValue);
-      res.render('self', {
-        title: '个人主页',
-        time :time,
-        tradeAble:tradeAble,
-        preValue:preValue,
-        trueValue:trueValue,
-        user:req.session.user
-      });
-    });
-  }
-});
-
-
-//琅琊榜页面
-///////////////////////////////////////////////////
-router.get('/ranklist',function(req,res){
-  if (!req.session.user) {
-    //获取url
-    var url = weixin.getOathUrl();
-    res.redirect(url);
-  }else{
-    var time = today();
-    User.findAll({order:'rate desc'}).then(function(users){
-      res.render('ranklist',{
-        users:users,
-        user:req.session.user,
-        title:'琅琊榜',
-        time:time
-      })
-    });
-  }
-});
 
 
 //股票相关类的页面
