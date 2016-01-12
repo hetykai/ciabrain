@@ -12,12 +12,16 @@
 					var indexlist = [];
 					var weekAverageIndex = ['7日利好'];
 					var closePriceList =['收盘价'];
+					var netWAI = ['7日增幅']
 					results.forEach(function(result,i){
 						// 查找当前时间的位置
 						trades = array(trades);
 						var trade = trades.find({ time : result['time'] });
 						indexlist.push(result['feelingIndex']);
 						weekAverageIndex.push(result['weekAverageIndex']);
+						//计算最后一个元素
+						var netWAICell = result['weekAverageIndex'] - weekAverageIndex[weekAverageIndex.length-2]
+						netWAI.push(netWAICell);
 						timeSet.push(result['time']);
 						if(trade&&i>=0){
 							closePriceList.push(trade["closePrice"]);
@@ -38,6 +42,7 @@
 					        columns: [
 					            timeSet,
 					            weekAverageIndex,
+					            netWAI,
 					            closePriceList
 					        ],
 					        axes:{
@@ -54,7 +59,7 @@
 					        },
 					        y: {
 						        label: {
-						          text: '7日利好',
+						          text: '7日利好/7日增幅',
 						          position: 'outer-middle'
 						        }
 						    },
