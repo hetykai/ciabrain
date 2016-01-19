@@ -12,12 +12,13 @@ cursor = db.cursor()
 #查询当天的情趣指数
 def updateFeeling(stocks):
 	#获取当前时间
-	time = getTime(0)
+	day = 0
+	time = getTime(day)
 	#生成sql开始保存数据
 	print time
 	c = config()
 	sql = "SELECT keyword,count(*) b from t_news_zw a where a.rate > 0 AND servicetype = 2 AND \
-	 a.publishtime < DATE_SUB(CURRENT_DATE(),INTERVAL -1 DAY) AND a.publishtime >= DATE_SUB(CURRENT_DATE(),INTERVAL 0 DAY)  GROUP BY a.keyword  ORDER BY b DESC"
+	 a.publishtime < DATE_SUB(CURRENT_DATE(),INTERVAL %d DAY) AND a.publishtime >= DATE_SUB(CURRENT_DATE(),INTERVAL %d DAY)  GROUP BY a.keyword  ORDER BY b DESC"%(day-1,day)
 	try:
 		cursor.execute(sql)
 		results = cursor.fetchall()
@@ -28,6 +29,7 @@ def updateFeeling(stocks):
 			id = json.loads(stock.text)["id"]
 			#将情绪数据存储到数据库中
 			data = {"feelingIndex":result[1],"StockId":id,"time":time,"stockName":result[0]}
+			print data
 			url2 = c['url']+'/api/feelings'
 			r = requests.post(url2,data=data)
 			print r.text.encode('utf8')

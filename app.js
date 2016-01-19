@@ -41,12 +41,14 @@ var feeling = require('./routes/stock/feeling');
 var stock = require('./routes/stock/stock');
 var trade = require('./routes/stock/trade');
 var topic = require('./routes/stock/topic');
+var frequence = require('./routes/stock/frequence');
 
 app.use('/', routes);
 app.use('/api',feeling);
 app.use('/api',stock);
 app.use('/api',trade);
 app.use('/api',topic);
+app.use('/api',frequence);
 weixinAPI(app);
 
 // catch 404 and forward to error handler

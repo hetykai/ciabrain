@@ -59,7 +59,7 @@ router.route('/feelingIndex/:type')
 				var stock = result.stockName;
 				var feelingIndex = result.feelingIndex;
 				var StockId = result.StockId;
-				if (stocks[stock]){
+				if (stocks[stock]||stocks[stock]==0){
 					results[stocks[stock]]["feelingIndex"] = results[stocks[stock]]["feelingIndex"] + feelingIndex;
 				}else{
 					stocks[stock]=location

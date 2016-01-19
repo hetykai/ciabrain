@@ -18,8 +18,6 @@ exports.schedule = function(){
 
 }
 
-
-
 // 辅助函数
 // =============================================================================
 function updateTrade(){
@@ -41,7 +39,6 @@ function updateFeeling(){
 	});
 }
 
-
 //获取今天的时间
 function today(){
   var d = new Date();
@@ -58,3 +55,4 @@ function tradeTime(time){
 	return false;
 	}
 }
+// topic.updateTopic();

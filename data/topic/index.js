@@ -1,4 +1,6 @@
 var Topic = require('../../db/models').Topic;
+var Frequence = require('../../db/models').Frequence;
+var time = require('../../help/time');
 var request = require('request-promise');
 var config = require('../../config')['api'];
 
@@ -13,6 +15,9 @@ exports.updateTopic = function(){
 			var gatherDgree = topic.gatherDgree;
 			Topic.findOrCreate({where:{key:key},defaults:{frequence:frequence,entropy:entropy,gatherDgree:gatherDgree}})
 			.spread(function(t){
+				var id = t.id;
+				updateFrequence(frequence-t.frequence,id,t.key,today());
+				//更新话题
 				t.frequence = frequence;
 				t.entropy =entropy;
 				t.gatherDgree = gatherDgree;
@@ -23,4 +28,22 @@ exports.updateTopic = function(){
 			});
 		});
 	});
+}
+
+
+//更新频率
+function updateFrequence(frequence,id,key,time){
+	Frequence.findOrCreate({where:{key:key,time:time},defaults:{frequence:frequence,key:key,TopicId:id}})
+	.spread(function(f){
+		f.frequence = frequence+f.frequence;
+		f.save();
+	}).catch(function(err){
+		console.log(err);
+	});
+};
+
+//获取今天的时间
+function today(){
+  var d = new Date();
+  return time.timeToString(d);
 }

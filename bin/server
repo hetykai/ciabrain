@@ -35,6 +35,12 @@ Trade.belongsTo(Stock);
 Stock.hasMany(Feeling);
 Stock.hasMany(Trade);
 
+//话题表结构
+var Topic = models.Topic;
+var Frequence = models.Frequence;
+Frequence.belongsTo(Topic);
+Topic.hasMany(Frequence);
+
 models.sequelize.sync().then(function() {
   server.listen(port);
   server.on('error', onError);

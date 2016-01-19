@@ -6,6 +6,7 @@
 	        url: url,
 	        type: 'GET',
 	        success: function(response) {
+	        	$("#test3").empty();
 	        	response.forEach(function(stock,i){
 	        		var html = "<tr><td class='center'>"+(i+1)+"</td><td class='center'><a href = '/stocks/"+stock["StockId"]+"'>"+stock["stockName"]+"</a></td><td class = 'center'>"+stock["feelingIndex"]+"</td></tr>"
 					$("#test3").append(html);
@@ -23,6 +24,7 @@
 	        url: url,
 	        type: 'GET',
 	        success: function(response) {
+	        	$("#test7").empty();
 	        	response.forEach(function(stock,i){
 	        		var html = "<tr><td class='center'>"+(i+1)+"</td><td class='center'><a href = '/stocks/"+stock["StockId"]+"'>"+stock["stockName"]+"</a></td><td class = 'center'>"+stock["feelingIndex"]+"</td></tr>"
 					$("#test7").append(html);
@@ -40,6 +42,7 @@
 	        url: url,
 	        type: 'GET',
 	        success: function(response) {
+	        	$("#test14").empty();
 	        	response.forEach(function(stock,i){
 	        		var html = "<tr><td class='center'>"+(i+1)+"</td><td class='center'><a href = '/stocks/"+stock["StockId"]+"'>"+stock["stockName"]+"</a></td><td class = 'center'>"+stock["feelingIndex"]+"</td></tr>"
 					$("#test14").append(html);
