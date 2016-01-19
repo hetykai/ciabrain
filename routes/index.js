@@ -1,6 +1,7 @@
 var express = require('express');
 var Feeling = require('../db/models').Feeling;
 var Stock = require('../db/models').Stock;
+var Topic = require('../db/models').Topic;
 var weixin = require('../weixin');
 var router = express.Router();
 var moment = require('moment');
@@ -60,7 +61,18 @@ router.get('/topics',function(req,res){
   });
 });
 
-
+//概念热度走势
+router.get('/topics/:TopicId',function(req,res){
+  var id = req.params.TopicId;
+  Topic.findOne({where:{id:id}}).then(function(topic){
+    res.render('frequence',{
+      title:topic.topicName,
+      topic:topic
+    })
+  }).catch(function(err){
+    res.send(err);
+  });
+});
 
 
 //OAUTH验证

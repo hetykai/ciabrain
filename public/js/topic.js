@@ -6,7 +6,7 @@
         success: function(response) {
             $("#test0").empty();
             response.forEach(function(topic,i){
-                var html = "<tr><td class='center'>"+(i+1)+"</td><td class='center'><a href = '#'>"+topic["key"]+"</a></td><td class = 'center'>"+topic["frequence"]+"</td></tr>"
+                var html = "<tr><td class='center'>"+(i+1)+"</td><td class='center'><a href = '/topics/"+topic["id"]+"'>"+topic["topicName"]+"</a></td><td class = 'center'>"+topic["frequence"]+"</td></tr>"
                 $("#test0").append(html);
             })
         },
@@ -23,7 +23,7 @@
             success: function(response) {
                 $("#test1").empty();
                 response.forEach(function(topic,i){
-                    var html = "<tr><td class='center'>"+(i+1)+"</td><td class='center'><a href = '#'>"+topic["key"]+"</a></td><td class = 'center'>"+topic["frequence"]+"</td></tr>"
+                    var html = "<tr><td class='center'>"+(i+1)+"</td><td class='center'><a href = '/topics/"+topic["TopicId"]+"'>"+topic["topicName"]+"</a></td><td class = 'center'>"+topic["frequence"]+"</td></tr>"
                     $("#test1").append(html);
                 })
             },
@@ -41,7 +41,7 @@
             success: function(response) {
                 $("#test3").empty();
                 response.forEach(function(topic,i){
-                    var html = "<tr><td class='center'>"+(i+1)+"</td><td class='center'><a href = '#'>"+topic["key"]+"</a></td><td class = 'center'>"+topic["frequence"]+"</td></tr>"
+                    var html = "<tr><td class='center'>"+(i+1)+"</td><td class='center'><a href = '/topics/"+topic["TopicId"]+"'>"+topic["topicName"]+"</a></td><td class = 'center'>"+topic["frequence"]+"</td></tr>"
                     $("#test3").append(html);
                 })
             },
@@ -59,7 +59,7 @@
             success: function(response) {
                 $("#test7").empty();
                 response.forEach(function(topic,i){
-                    var html = "<tr><td class='center'>"+(i+1)+"</td><td class='center'><a href = '#'>"+topic["key"]+"</a></td><td class = 'center'>"+topic["frequence"]+"</td></tr>"
+                    var html = "<tr><td class='center'>"+(i+1)+"</td><td class='center'><a href = '/topics/"+topic["TopicId"]+"'>"+topic["topicName"]+"</a></td><td class = 'center'>"+topic["frequence"]+"</td></tr>"
                     $("#test7").append(html);
                 })
             },
@@ -77,7 +77,7 @@
             success: function(response) {
                 $("#test14").empty();
                 response.forEach(function(topic,i){
-                    var html = "<tr><td class='center'>"+(i+1)+"</td><td class='center'><a href = '#'>"+topic["key"]+"</a></td><td class = 'center'>"+topic["frequence"]+"</td></tr>"
+                    var html = "<tr><td class='center'>"+(i+1)+"</td><td class='center'><a href = '/topics/"+topic["TopicId"]+"'>"+topic["topicName"]+"</a></td><td class = 'center'>"+topic["frequence"]+"</td></tr>"
                     $("#test14").append(html);
                 })
             },

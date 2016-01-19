@@ -9,14 +9,14 @@ exports.updateTopic = function(){
 	request(topicUrl).then(function(topics){
 		topics = JSON.parse(topics);
 		topics.forEach(function(topic,i){
-			var key = topic.key;
+			var topicName = topic.key;
 			var frequence = topic.frequence;
 			var entropy = topic.entropy;
 			var gatherDgree = topic.gatherDgree;
-			Topic.findOrCreate({where:{key:key},defaults:{frequence:frequence,entropy:entropy,gatherDgree:gatherDgree}})
+			Topic.findOrCreate({where:{topicName:topicName},defaults:{frequence:frequence,entropy:entropy,gatherDgree:gatherDgree}})
 			.spread(function(t){
 				var id = t.id;
-				updateFrequence(frequence-t.frequence,id,t.key,today());
+				updateFrequence(frequence-t.frequence,id,t.topicName,today());
 				//更新话题
 				t.frequence = frequence;
 				t.entropy =entropy;
@@ -32,8 +32,8 @@ exports.updateTopic = function(){
 
 
 //更新频率
-function updateFrequence(frequence,id,key,time){
-	Frequence.findOrCreate({where:{key:key,time:time},defaults:{frequence:frequence,key:key,TopicId:id}})
+function updateFrequence(frequence,id,topicName,time){
+	Frequence.findOrCreate({where:{topicName:topicName,time:time},defaults:{frequence:frequence,topicName:topicName,TopicId:id}})
 	.spread(function(f){
 		f.frequence = frequence+f.frequence;
 		f.save();
