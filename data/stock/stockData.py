@@ -6,7 +6,7 @@ import datetime
 import json
 import string
 import traceback
-db=MySQLdb.connect(host="qwercia01.mysql.rds.aliyuncs.com",user="cia",passwd="ciacia",db="cia",charset="utf8")
+db=MySQLdb.connect(host="rds4ek6486f81kpp056bo.mysql.rds.aliyuncs.com",user="cia",passwd="ciacia",db="cia",charset="utf8")
 cursor = db.cursor()
 
 #查询当天的情趣指数
@@ -27,8 +27,10 @@ def saveIndex(stocks,day):
 			url1 = c['url']+'/api/stockName/'+result[0]
 			stock = requests.get(url1)
 			id = json.loads(stock.text)["id"]
+			#计算差值
+			feelingIndex = result[1] - countNegative(result[0],day)
 			#将情绪数据存储到数据库中
-			data = {"feelingIndex":result[1],"StockId":id,"time":time,"stockName":result[0]}
+			data = {"feelingIndex":feelingIndex,"StockId":id,"time":time,"stockName":result[0]}
 			r = requests.post(url2,data=data)
 			print r.text.encode('utf8')
 			db.commit()
@@ -63,6 +65,19 @@ def getAllStock():
 	return json.loads(r.text);
 
 
+#获取关键字的负面新闻条数
+def countNegative(keyword,day):
+	sql = "SELECT count(*) b from t_news_zw a where a.keyword= '%s' AND a.rate < 0 AND servicetype = 2 AND \
+	 a.publishtime < DATE_SUB(CURRENT_DATE(),INTERVAL %d DAY) AND a.publishtime >= DATE_SUB(CURRENT_DATE(),INTERVAL %d DAY)  GROUP BY a.keyword  ORDER BY b DESC"%(keyword,day-1,day)
+	try:
+		cursor.execute(sql)
+		result = cursor.fetchone()
+		if result == None:
+			return 0
+		else:
+			return result[0]
+	except:
+		traceback.print_exc()
 
 
 #读取配置信息
@@ -86,7 +101,7 @@ def getTime(day):
 
 if __name__ == '__main__':
 	stocks = getAllStock()
-	for i in xrange(0,130):
+	for i in xrange(120,130):
 		print i
 		saveIndex(stocks,129-i)
 	db.close()
