@@ -101,7 +101,7 @@ def getTime(day):
 
 if __name__ == '__main__':
 	stocks = getAllStock()
-	for i in xrange(120,130):
+	for i in xrange(110,130):
 		print i
 		saveIndex(stocks,129-i)
 	db.close()
