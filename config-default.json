@@ -1,7 +1,7 @@
 {
   "weixin":{
     "token":"weixin",
-    "getToken":"1 52 * * * *",
+    "getToken":{"hour":11,"minute":52},
     "appID":"wx947add0ef3aea4d9",
     "appsecret":"7dbb76e70d9266e893fc5fcf99626385",
     "redirectUrl":"http://123.57.138.73/oauth",
@@ -11,17 +11,17 @@
   "development": {
     "host":"localhost",
     "port":"4444",
-    "updateFeeling":"0 6 * * * *",
-    "updateTopic":"0 6 * * * *",
-    "updateTrade":"0 39 9 * * *"
+    "updateFeeling":{"minute":0},
+    "updateTopic":{"minute":0},
+    "updateTrade":{"minute":40,"hour":9}
 
   },
   "production": {
     "host":"123.57.138.73",
     "port":"4444",
-    "updateFeeling":"0 1 * * * *",
-    "updateTopic":"0 6 * * * *",
-    "updateTrade":"0 33 9 * * *"
+    "updateFeeling":{"minute":0},
+    "updateTopic":{"minute":0},
+    "updateTrade":{"minute":40,"hour":9}
   },
   "analyse" : {
     "url":"http://localhost:4444",
@@ -31,4 +31,3 @@
     "topic":"http://localhost:3000/api/topics"
   }
 }
-
