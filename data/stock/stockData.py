@@ -6,7 +6,7 @@ import datetime
 import json
 import string
 import traceback
-db=MySQLdb.connect(host="rds4ek6486f81kpp056bo.mysql.rds.aliyuncs.com",user="cia",passwd="ciacia",db="cia",charset="utf8")
+db=MySQLdb.connect(host="qwercia01.mysql.rds.aliyuncs.com",user="cia",passwd="ciacia",db="cia",charset="utf8")
 cursor = db.cursor()
 
 #查询当天的情趣指数
